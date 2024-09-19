@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sea</title>
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+            margin: 0;
+            padding: 0;
+            font-size: 200px;
+        }
+        
+        video.thumbnail {
+            width: 100%;
+            height: auto;
+        }
+        
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+        }
+        
+        .left {
+            left: 0;
+            background-color: #111;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        
+        .right {
+            right: 0;
+            background-color: red;
+        }
+        
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        
+        .scrolling-text {
+            position: relative;
+            top: 0;
+            padding: 20px;
+            height: 100%; /* Full height for scrolling */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted class="thumbnail">
+        <source src="ocean.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        function attrCycle(words, duration, whichone){
+            let len = words.length;
+            let n = 0;
+        
+            if(!duration) duration = 1500;
+            whichone.title = words[n];
+        
+            let cycle = setInterval(function(){
+                if(n == len - 1){
+                    whichone.title = words[n];
+                    n = 0;
+                } else if(n==0){
+                    whichone.title = words[n];
+                    n++;
+                } else{
+                    whichone.title = words[n];
+                    n++;
+                }
+            }, duration);
+        }
+        
+        let t = ["I need the sea because it teaches me", "I don’t know if I learn music or awareness,", "if it’s a single wave or its vast existence,",
+            "or only its harsh voice or its shining", "suggestion of fishes and ships", "The fact is that until I fall asleep,", 
+            "in some magnetic way I move in", "the university of the waves.", "It’s not simply the shells crunched",
+            "as if some shivering planet", "were giving signs of its gradual death;", "no, I reconstruct the day out of a fragment,",
+            "the stalactite from the sliver of salt,", "and the great god out of a spoonful."," What it taught me before, I keep. It’s air","ceaseless wind, water and sand.", "-- Pablo Neruda"];
+        
+        let videos = document.getElementsByTagName("video");
+        for (let i = 0; i < videos.length; i++){
+            attrCycle(t, 1800, videos[i]);
+        }
+    </script>
+</body>
+</html>
